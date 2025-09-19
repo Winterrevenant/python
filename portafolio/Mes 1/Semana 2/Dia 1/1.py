@@ -5,16 +5,15 @@ class Libro:
         self.autor = autor
         self._disponible = True
     
-    def  is_disponible(self):
+    def is_disponible(self):
         
         if not self._disponible:
-            return
-        print("Libro disponible")
+            return False
+        return True
 
     def cambiar_estado(self):
         if not self._disponible:
-            print("Libro no disponible")
-            return
+            return False
         self._disponible = False
 
 class Usuario:
@@ -22,9 +21,10 @@ class Usuario:
         self.nombre = nombre
     
     def prestar(self,libro):
-        Libro.is_disponible(libro)
-        Libro.cambiar_estado(libro)
-
+        if Libro.is_disponible(libro):
+            Libro.cambiar_estado(libro)
+        else:
+            print(f"El libro {libro.titulo} no esta disponible")
 
     
 def main():
