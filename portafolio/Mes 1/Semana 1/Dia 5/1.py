@@ -18,7 +18,7 @@ def añadir_tarea(lista,nombres_norm_set):
     nombres_vis=nombre.strip()
     categoria_vis=categoria
     nombre_norm=normalizar(nombre)
-    print(nombre_norm)
+    
 
     if nombre in nombres_norm_set:
         print("Esa tarea ya existe")
