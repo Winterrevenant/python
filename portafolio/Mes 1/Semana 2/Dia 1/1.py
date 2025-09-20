@@ -5,27 +5,34 @@ class Libro:
         self.autor = autor
         self._disponible = True
     
-    def is_disponible(self):
-        
-        if not self._disponible:
-            return False
-        return True
+    def is_disponible(self) -> bool:
+        return self._disponible
 
-    def cambiar_estado(self):
+    def prestar(self) -> bool:
+        """Intenta marcar el libro como no disponible. True si se prestó, False si ya estaba prestado."""
         if not self._disponible:
             return False
         self._disponible = False
-
-class Usuario:
-    def __init__(self,nombre):
-        self.nombre = nombre
+        return True
     
-    def prestar(self,libro):
-        if Libro.is_disponible(libro):
-            Libro.cambiar_estado(libro)
-        else:
-            print(f"El libro {libro.titulo} no esta disponible")
+    def devolver(self) -> bool:
+        """Intenta marcar el libro como disponible. True si se devolvió, False si ya estaba disponible."""
+        if self._disponible:
+            return False
+        self._disponible = True
+        return True
+    
+class Usuario:
+    """Clase que representa un usuario que puede tomar prestado un libro"""
+    def __init__(self,nombre:str):
+        self.nombre = nombre
 
+    def prestar(self,libro:Libro) -> None:
+        if libro.prestar():
+            print(f"{self.nombre} ha prestado {libro.titulo}.")
+        else:
+            print(f"{libro.titulo} no esta disponible")
+    
     
 def main():
 
@@ -37,6 +44,7 @@ def main():
 
     usu1.prestar(libro1)
     usu2.prestar(libro1)
+    
     
     
     
