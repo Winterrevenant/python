@@ -7,10 +7,15 @@ class Libro:
 class Usuario:
     def __init__(self,nombre):
         self.nombre = nombre
-        
         self.libros = []
+    def prestar(self,libro):
+        verificar = Prestamo(libro)
+        if not verificar.disponible():
+            print("Libro no disponible")
+            return False
+        if len(self.libros) > 3:
+            print(f"Limite de libros alcanzado {len(self.libros)} de 3")
 
-    
 
 class Prestamo:
     def __init__(self,libro):
@@ -30,8 +35,23 @@ class Prestamo:
         return True
 
 libro1 = Libro("los100","unknown")
+libro2 = Libro("perfume","unknown")
+libro3 = Libro("hay un dinosaurio en mi sopa","unknown")
+libro4 = Libro("harry poter","unknown")
+
+
 
 us1 = Usuario("carlos")
+us1.prestar(libro1)
+us1.prestar(libro2)
+us1.prestar(libro3)
+us1.prestar(libro4)
+
+
+
+
+
+
 
 
 
