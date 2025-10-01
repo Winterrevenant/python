@@ -1,7 +1,7 @@
 class Carta:
-    def __init__(self,nombre,palo,valor):
-        self.nombre = nombre
+    def __init__(self,palo,figura,valor):
         self.palo = palo
+        self.figura = figura
         self.valor = valor
 
 
@@ -9,46 +9,24 @@ class Baraja:
     def __init__(self):
         self.baraja=[]
 
-    def corazones(self):
+    def crear_cartas(self,palo):
         for i in range(2,11):
-            self.baraja.append(Carta("Corazones",i,i))
-        self.baraja.append(Carta("Corazones","A",(1,11)))
-        self.baraja.append(Carta("Corazones","J",10))
-        self.baraja.append(Carta("Corazones","K",10))
-        self.baraja.append(Carta("Corazones","Q",10))
+            self.baraja.append(Carta(palo,i,i))
+        self.baraja.append(Carta(palo,"A",(1,11)))
+        self.baraja.append(Carta(palo,"J",10))
+        self.baraja.append(Carta(palo,"K",10))
+        self.baraja.append(Carta(palo,"Q",10))
     
-    def picas(self):
-        for i in range(2,11):
-            self.baraja.append(Carta("Picas",i,i))
-        self.baraja.append(Carta("Picas","A",(1,11)))
-        self.baraja.append(Carta("Picas","J",10))
-        self.baraja.append(Carta("Picas","K",10))
-        self.baraja.append(Carta("Picas","Q",10))
-
-    def treboles(self):
-        for i in range(2,11):
-            self.baraja.append(Carta("Treboles",i,i))
-        self.baraja.append(Carta("Treboles","A",(1,11)))
-        self.baraja.append(Carta("Treboles","J",10))
-        self.baraja.append(Carta("Treboles","K",10))
-        self.baraja.append(Carta("Treboles","Q",10))
-
-    def diamantes(self):
-        for i in range(2,11):
-            self.baraja.append(Carta("Diamantes",i,i))
-        self.baraja.append(Carta("Diamantes","A",(1,11)))
-        self.baraja.append(Carta("Diamantes","J",10))
-        self.baraja.append(Carta("Diamantes","K",10))
-        self.baraja.append(Carta("Diamantes","Q",10))
-
+    def mostrar_cartas(self):
+        for i in self.baraja:
+            print(f"{i.figura} {i.palo}",end=" ")
 
 def crear_baraja():
+    palos = ["Corazones","Picas","Treboles","Diamantes"]
     bar1=Baraja()
-    bar1.corazones()
-    bar1.diamantes()
-    bar1.treboles()
-    bar1.picas()
-    print(len(bar1.baraja))
+    for i in palos:
+        bar1.crear_cartas(i)
+    bar1.mostrar_cartas()
     return bar1
 
 def main():
