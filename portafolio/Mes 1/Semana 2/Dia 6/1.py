@@ -1,4 +1,7 @@
+import random
+
 class Carta:
+    """Clase que simula una carta"""
     def __init__(self,palo,figura,valor):
         self.palo = palo
         self.figura = figura
@@ -6,6 +9,7 @@ class Carta:
 
 
 class Baraja:
+    """Clase que sirve para crear una baraja de poker"""
     def __init__(self):
         self.baraja=[]
 
@@ -19,14 +23,26 @@ class Baraja:
     
     def mostrar_cartas(self):
         for i in self.baraja:
-            print(f"{i.figura} {i.palo}",end=" ")
+            print(f"{i.figura} {i.palo} ({i.valor})", end=" ")
+    
+    def mezclar(self):
+        random.shuffle(self.baraja)
+    
+    def repartir(self,n_cartas):
+        print(self.baraja[:n_cartas])
+class Jugador:
+    def __init__(self,nombre,mano):
+        self.nombre = nombre
+        mano = []
+
 
 def crear_baraja():
     palos = ["Corazones","Picas","Treboles","Diamantes"]
     bar1=Baraja()
     for i in palos:
         bar1.crear_cartas(i)
-    bar1.mostrar_cartas()
+    bar1.mezclar()
+    bar1.repartir(6)
     return bar1
 
 def main():
