@@ -24,17 +24,20 @@ class Baraja:
     def mostrar_cartas(self):
         for i in self.baraja:
             print(f"{i.figura} {i.palo} ({i.valor})", end=" ")
+        print("-"*50)
     
     def mezclar(self):
         random.shuffle(self.baraja)
     
-    def repartir(self,n_cartas):
-        print(self.baraja[:n_cartas])
+    def repartir(self):
+        carta = self.baraja[0:1]
+        del(self.baraja[0:1])
+        return carta
+    
 class Jugador:
     def __init__(self,nombre,mano):
         self.nombre = nombre
         mano = []
-
 
 def crear_baraja():
     palos = ["Corazones","Picas","Treboles","Diamantes"]
@@ -42,11 +45,14 @@ def crear_baraja():
     for i in palos:
         bar1.crear_cartas(i)
     bar1.mezclar()
-    bar1.repartir(6)
+    bar1.mostrar_cartas()
+    bar1.repartir()
+    bar1.mostrar_cartas()
     return bar1
 
 def main():
     crear_baraja()
+    
 
 if __name__ == "__main__":
     main()
